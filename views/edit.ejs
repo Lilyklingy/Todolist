@@ -1,0 +1,5 @@
+<form action="/edit" method="post">
+    <input type="text" name="name" value="<% todo.name %>" placeholder="<%= todo.name %>">
+    <input type="text" name="id" value="<%= todo._id %>" hidden>
+    <button type="submit">Edit</button>
+    </form>

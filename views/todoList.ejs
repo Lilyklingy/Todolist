@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todolist</title>
+</head>
+<body>
+    <div>
+        Välkommen <%= user.user.name %> 
+        <a href="/logut">Logg out</a>
+    </div>
+    <h1>To Do List</h1>
+    <a href="/register">Register</a>
+    <a href="/login">Loggin</a>
+    <%- include("add-data.ejs") %>
+    <% if(typeof errors !== undefined && errors !== "empty") { %>
+        <%- include("error.ejs") %>
+    <% } %>
+<a href="/?page=<%=(dataToShow/dataToShowPerReq)%>&&sorted=-1">sortera Z-A</a>
+<a href="/?page=<%=(dataToShow/dataToShowPerReq)%>&&sorted=1">sortera A-Z</a>
+<% for(let i=0; i<data.length; i++) { %>
+    <div> <%= data[i].name %> 
+         
+         <a href="/edit/<%= data[i]._id %>">edit</a>
+         <a href="/delete/<%= data[i]._id%>">delete</a>
+    </div>
+<% } %>
+        <% if(totalDataPart !== dataToShow/dataToShowPerReq) { %>
+            <a href="/?page=<%=(dataToShow/dataToShowPerReq)+1%>">visa flera</a>
+        <%}else {%>
+            <a href="/?page=1">visa mindre</a>
+        <%}%>
+</body>
+</html>
